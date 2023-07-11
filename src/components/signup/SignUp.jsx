@@ -1,5 +1,5 @@
 import React from 'react'
-
+// import { Progress } from "@material-tailwind/react";
 export default function SignUp() {
   return (
     <div className='signup-page flex justify-around m-10'>
