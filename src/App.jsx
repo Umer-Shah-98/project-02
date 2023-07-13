@@ -1,19 +1,15 @@
 import "./App.css";
 import NavBar from "./components/NavBar.jsx";
 import Footer from "./components/Footer.jsx";
-import { Line, Circle } from "rc-progress";
 import { useState } from "react";
 import CategoryCard from "./components/categoryCard/CategoryCard";
-import { CustomContentProgressBar } from "./components/progressBar/CustomContentProgressBar";
-import EducationIcon from './assets/education-icon.png'
-import HealthCareIcon from './assets/healthcare-icon.png'
-import TransportIcon from './assets/transport-icon.png'
-import FoodIcon from './assets/food-icon.jpg'
+import SavingsCard from "./components/savingsCard/SavingsCard";
+import TitleWithButton from './components/titleWithButton/TitleWithButton';
 function App() {
   let progressPercentage = 50;
-  let titles = ["Health", "Education", "Food","Transport"];
-  const icons = [HealthCareIcon,EducationIcon,FoodIcon,TransportIcon]
-  const strokes =['red','blue','green','orange']
+  // let titles = ["Health", "Education", "Food","Transport"];
+  // const icons = [HealthCareIcon,EducationIcon,FoodIcon,TransportIcon]
+  // const strokes =['red','blue','green','orange']
   const [percentage, setPercentage] = useState(50);
 
   return (
@@ -23,24 +19,18 @@ function App() {
           <NavBar color={{ backgroundColor: "white" }} />
         </div>
         <div className="col-2 rounded-md">
-          <div className="categories">
-            <div className="title-btn m-5">
-              <h1 className="text-lg font-bold">
-                Budgeting Categories{" "}
-                <button className="text-2xl ml-2 bg-white px-4 text-center rounded-md">
-                  <div className="mb-1 font-normal">+</div>
-                </button>
-              </h1>
-            </div>
+          <div className='budgeting-categories'>
+            <TitleWithButton title='Budgeting Categories'/>
           </div>
-          <div className="category-cards-wrapper flex">
-            <div>
-              <CategoryCard title={titles[0]} icon={icons[0]} color={strokes[0]} />
+            <div className="flex flex-wrap ">
+              <CategoryCard />
             </div>
-            <div>
-              <CategoryCard title={titles[1]} icon={icons[1]} color={strokes[1]} />
+            <div className='mt-10 mb-0 savings-categories'>
+              <TitleWithButton title='Your Savings Goals'/>
             </div>
-          </div>
+            <div className="flex flex-wrap">
+              <SavingsCard/>
+            </div>
         </div>
         <div className="col-3 rounded-md"></div>
       </div>
