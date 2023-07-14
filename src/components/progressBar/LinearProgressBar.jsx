@@ -27,14 +27,14 @@ const LinearProgressBar = ({bgcolor,progress,height}) => {
 		fontWeight: 900,
         fontSize:9,
         position:'absolute',
-        textAlign: 'center',
+        textAlign: 'top',
 	}
 		
 	return (
         <>
 	<div style={parentDiv}>
 	<div style={childDiv}>
-    <span className='ml-0.5 mt-0' style={progressText}>{`${progress}%`}</span>
+    <span className='ml-0.5 -mt-0.5 mb-8' style={progressText}>{`${progress}%`}</span>
 	</div>
 	</div>
 		

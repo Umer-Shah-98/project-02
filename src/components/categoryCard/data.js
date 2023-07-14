@@ -1,7 +1,7 @@
-import EducationIcon from '../assets/education-icon.png'
-import HealthCareIcon from '../assets/healthcare-icon.png'
-import TransportIcon from '../assets/transport-icon.png'
-import FoodIcon from '../assets/food-icon.jpg'
+import EducationIcon from '../../assets/education-icon.png'
+import HealthCareIcon from '../../assets/healthcare-icon.png'
+import TransportIcon from '../../assets/transport-icon.png'
+import FoodIcon from '../../assets/food-icon.jpg'
 
 export const budgetCards=[
     {
