@@ -5,6 +5,7 @@ import CategoryCard from '../categoryCard/CategoryCard'
 import SavingsCard from '../savingsCard/SavingsCard'
 import Footer from '../Footer'
 import './home.css'
+import Component from '../Component'
 const Home = () => {
     let progressPercentage = 50;
   return (
@@ -14,14 +15,15 @@ const Home = () => {
           <NavBar color={{ backgroundColor: "white" }} />
         </div>
         <div className="col-2 rounded-md">
+          <Component/>
           <div className='budgeting-categories'>
-            <TitleWithButton title='Budgeting Categories'/>
+            <TitleWithButton title='Budgeting Categories' color={'white'}/>
           </div>
             <div className="flex flex-wrap ">
               <CategoryCard amount={400000} max={100000}/>
             </div>
             <div className='mt-10 mb-0 savings-categories'>
-              <TitleWithButton title='Your Savings Goals'/>
+              <TitleWithButton title='Your Savings Goals' color={'white'}/>
             </div>
             <div className="flex flex-wrap">
               <SavingsCard amount={500000} max={100000}/>
