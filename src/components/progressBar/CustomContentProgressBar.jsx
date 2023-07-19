@@ -1,18 +1,18 @@
 import React from "react";
 import { CircularProgressbarWithChildren } from "react-circular-progressbar";
 import { useState } from "react";
-export function CustomContentProgressBar(props) {
+export function CustomContentProgressBar({progress,color,icon}) {
     const [percentage, setPercentage] = useState(50);
   return (
     <div className="bar" style={{width:70,height:70}}>
-     <CircularProgressbarWithChildren value={percentage}
+     <CircularProgressbarWithChildren value={progress}
   styles={{
     // Customize the root svg element
     root: {},
     // Customize the path, i.e. the "completed progress"
     path: {
       // Path color
-      stroke: `${props.color}`,
+      stroke: `${color}`,
       // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
       strokeLinecap: 'butt',
       // Customize transition animation
@@ -45,12 +45,12 @@ export function CustomContentProgressBar(props) {
   }}>
             {/* Put any JSX content in here that you'd like. It'll be vertically and horizontally centered. */}
             <img
-              style={{ width: 25, marginTop: 0 }}
-              src={props.icon}
-              alt="doge"
+              style={{ width: 25, marginTop: 3 }}
+              src={icon}
+              alt="icon"
             />
-            <div style={{ fontSize: 12, marginTop: 0 }}>
-              <strong>{percentage}%</strong>
+            <div style={{ fontSize: 11, marginTop: 5, textAlign:'center' }}>
+              <strong>{progress}%</strong>
             </div>
           </CircularProgressbarWithChildren>
           </div>
