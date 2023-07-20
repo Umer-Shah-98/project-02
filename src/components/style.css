@@ -1,0 +1,18 @@
+.form_container {
+  width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+  .form_container {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .form_container {
+    width: 65%;
+  }
+}
+.bg-yellow{
+  background-color: yellow;
+}
