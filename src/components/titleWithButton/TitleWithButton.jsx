@@ -20,12 +20,12 @@ const TitleWithButton = ({title,style,buttonName,showBudgetModal,handleCloseBudg
   }
   return (
     <>
-      <div className="m-2 flex justify-baseline as">
+      <div className="m-2 flex justify-baseline">
         <h1 className="text-lg font-bold text-center mt-1">{title}</h1>
         <button
           type="button"
           style={style}
-          className={`bg-white button-hover hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-200 font-bold rounded-md text-lg px-3 py-1 ml-4 mr-2 mb-2`}
+          className={`bg-white button-hover hover:bg-gray-200 font-bold rounded-md text-lg px-3 py-1 ml-4 mr-2 mb-2`}
           onClick={() => {
             handleOpenBudgetModal();
             console.log("called");

@@ -33,7 +33,7 @@ const AddExpenseModal = ({style,color,buttonName,handleOpen,handleClose,showModa
         <button
           type="button"
           style={style}
-          className={`text-black  bg-${color} hover:bg-gray-200 focus:outline-none focus:ring-4 focus:ring-gray-200 font-bold rounded-md text-lg px-2 mt-2 py-1 mr-2 mb-2 dark:bg-gray-200 dark:hover:bg-gray-200 dark:focus:ring-gray-200 dark:border-gray-200`}
+          className={`text-black  bg-${color} hover:bg-currentColor font-bold rounded-md text-lg px-2 mt-2 py-1 mr-2 mb-2`}
           // onClick={() => {
           //   handleOpen();
           // }}
