@@ -1,9 +1,10 @@
+import React from 'react'
 import NavBar from '../../navBar/NavBar'
-export default function Expenses() {
+const Settings = () => {
   return (
     <div className='flex'>
     <div>
-      <NavBar style={{backgroundColor:"#FEBE10", width:'50px'}}/>
+      <NavBar style={{backgroundColor:"#FF7518", width:'50px'}}/>
       </div>
       <div className='flex items-center'>
         <div>
@@ -13,3 +14,5 @@ export default function Expenses() {
     </div>
   )
 }
+
+export default Settings

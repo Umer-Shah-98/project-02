@@ -48,6 +48,12 @@ export const BudgetsProvider = ({ children }) => {
     });
   }
   function deleteBudget({ id }) {
+    setExpenses((previousExpenses) => {
+      return previousExpenses.map((expense) => {
+        if (expense.budgetId !== id) return expense;
+        return { ...expense, budgetId: UNCATEGORIZED_BUDGET_ID };
+      });
+    });
     setBudgets((previousBudgets) => {
       return previousBudgets.filter((budget) => budget.id !== id);
     });

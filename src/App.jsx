@@ -8,6 +8,7 @@ import SavingsCard from "./components/savingsCard/SavingsCard";
 import { Navbar } from "rsuite";
 import Wallet from "./components/pages/wallet/Wallet";
 import Expenses from "./components/pages/expenses/Expenses";
+import Settings from "./components/pages/settings/Settings";
 function App() {
   const router=createBrowserRouter([
     {
@@ -34,7 +35,7 @@ function App() {
     },
     {
       path:'/settings',
-      element:(<div><h1>This page is under development</h1></div>)
+      element:<Settings/>
     }
   ])
   // let titles = ["Health", "Education", "Food","Transport"];

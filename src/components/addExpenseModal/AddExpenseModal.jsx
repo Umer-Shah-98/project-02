@@ -3,14 +3,15 @@ import {
   UNCATEGORIZED_BUDGET_ID,
   useBudgets,
 } from "../budgetContext/BudgetContext";
-const AddExpenseModal = ({style,color,buttonName,handleOpen,handleClose,showModal,defaultBudgetId}) => {
-  // const [showModal, setShowModal] = useState(false);
-  // function handleClose() {
-  //   setShowModal(false);
-  // }
-  // function handleOpen() {
-  //   setShowModal(true);
-  // }
+const AddExpenseModal = ({
+  style,
+  color,
+  buttonName,
+  handleOpen,
+  handleClose,
+  showModal,
+  defaultBudgetId,
+}) => {
   const descriptionRef = useRef();
   const amountRef = useRef();
   const budgetIdRef = useRef();
@@ -19,7 +20,9 @@ const AddExpenseModal = ({style,color,buttonName,handleOpen,handleClose,showModa
     console.log("called");
     e.preventDefault();
     addExpense({
-      description: descriptionRef.current.value.toUpperCase(),
+      description:
+        descriptionRef.current.value.slice(0, 1).toUpperCase() +
+        descriptionRef.current.value.slice(1).toLowerCase(),
       amount: parseFloat(amountRef.current.value),
       budgetId: budgetIdRef.current.value,
     });
@@ -28,20 +31,14 @@ const AddExpenseModal = ({style,color,buttonName,handleOpen,handleClose,showModa
   return (
     <div>
       <div className="categories flex">
-        {/* <div className="title-btn m-2 flex justify-baseline"> */}
-        {/* <h1 className="text-lg font-bold text-center mt-1">{props.title}</h1> */}
         <button
           type="button"
           style={style}
-          className={`text-black  bg-${color} hover:bg-currentColor font-bold rounded-md text-lg px-2 mt-2 py-1 mr-2 mb-2`}
-          // onClick={() => {
-          //   handleOpen();
-          // }}
+          className={`text-black text-center bg-gray-200 hover:bg-inherit font-bold rounded-md text-lg px-3 mt-2 py-1 mr-2 mb-2`}
           onClick={handleOpen}
         >
           {buttonName}
         </button>
-        {/* </div> */}
       </div>
       {showModal ? (
         <>
@@ -120,7 +117,6 @@ const AddExpenseModal = ({style,color,buttonName,handleOpen,handleClose,showModa
                       <button
                         className="text-white bg-yellow-500 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                         type="submit"
-                        // onClick={() => setShowModal(false)}
                       >
                         Add
                       </button>

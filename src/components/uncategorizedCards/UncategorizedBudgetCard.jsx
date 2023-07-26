@@ -1,9 +1,8 @@
 import React from 'react'
 import CategoryCard from '../categoryCard/CategoryCard'
-import UncategorizedIcon from '../../assets/uncategorized-icon.png'
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from '../budgetContext/BudgetContext'
 
-export default function UncategorizedBudgetCard(props) {
+const UncategorizedBudgetCard=(props)=> {
   const {getBudgetExpenses} =useBudgets()
   const amount = getBudgetExpenses(UNCATEGORIZED_BUDGET_ID).reduce(
     (total, expense) => total + expense.amount,
@@ -16,3 +15,4 @@ export default function UncategorizedBudgetCard(props) {
     </div>
   )
 }
+export default UncategorizedBudgetCard;

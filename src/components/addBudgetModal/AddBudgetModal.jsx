@@ -1,11 +1,13 @@
 import React, { useState, useRef } from "react";
 import { useBudgets } from "../budgetContext/BudgetContext";
-import "./titleWithButton.css";
-const TitleWithButton = ({title,style,buttonName,showBudgetModal,handleCloseBudgetModal,handleOpenBudgetModal}) => {
-  // const [showModal, setShowModal] = useState(false);
-  // function handleClose() {
-  //   setShowModal(false);
-  // }
+const TitleWithButton = ({
+  title,
+  style,
+  buttonName,
+  showBudgetModal,
+  handleCloseBudgetModal,
+  handleOpenBudgetModal,
+}) => {
   const nameRef = useRef();
   const maxRef = useRef();
   const { addBudget } = useBudgets();
@@ -13,7 +15,9 @@ const TitleWithButton = ({title,style,buttonName,showBudgetModal,handleCloseBudg
     console.log("called");
     e.preventDefault();
     addBudget({
-      name: nameRef.current.value.slice(0,1).toUpperCase()+nameRef.current.value.slice(1).toLowerCase(),
+      name:
+        nameRef.current.value.slice(0, 1).toUpperCase() +
+        nameRef.current.value.slice(1).toLowerCase(),
       max: parseFloat(maxRef.current.value),
     });
     handleCloseBudgetModal();
@@ -89,7 +93,6 @@ const TitleWithButton = ({title,style,buttonName,showBudgetModal,handleCloseBudg
                       <button
                         className="text-white bg-yellow-500 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                         type="submit"
-                        // onClick={() => setShowModal(false)}
                       >
                         Add
                       </button>
@@ -106,6 +109,3 @@ const TitleWithButton = ({title,style,buttonName,showBudgetModal,handleCloseBudg
 };
 
 export default TitleWithButton;
-// TitleWithButton.propTypes = {
-//   color: PropTypes.string
-// };

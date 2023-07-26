@@ -42,6 +42,11 @@ export const otherColors = {
   color_1:`#800000`,
   color_2:`#dc143c`,
   color_3:`#ff8c00`,
-  color_4:`b22222`,
-  color_5:`goldenrod`,
+  color_4:`#b22222`,
+  color_5:`#daa520 `,
+  color_6:`#EC5800`,
+  color_7:`#FA5F55`,
+  color_8:`##004953`,
+  color_9:`##318CE7`,
+  color_10:`##002244 `,
 }
