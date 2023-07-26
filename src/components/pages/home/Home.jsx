@@ -19,6 +19,7 @@ import TotalCard from "../../totalCard/TotalCard";
 import ViewExpensesModal from "../../viewExpensesModal/ViewExpensesModal";
 import AddExpenseModal from "../../addExpenseModal/AddExpenseModal";
 import UncategorizedExpenseCard from "../../uncategorizedCards/UncategorizedExpenseCard";
+import { CustomContentProgressBar } from "../../progressBar/CustomContentProgressBar";
 const Home = () => {
   let progressPercentage = 50;
   const { budgets, getBudgetExpenses } = useBudgets();
@@ -270,8 +271,9 @@ const Home = () => {
             <SavingsCard amount={35000} max={50000} />
           </div>
         </div>
-        <div className="col-3 rounded-lg ">
-          <div>
+        <div className="col-3 rounded-lg overflow-y-auto">
+          <div className="overflow-y-auto">
+          <div className='overflow-y-auto'>
             {budgets.map((budget, index) => {
               let color, icon;
               const getIcon = (icons) => {
@@ -326,6 +328,7 @@ const Home = () => {
               
                 
                 />
+          </div>
           </div>
           {/*//logic for fetching color and icon corresponding to titles.
               let color, icon;

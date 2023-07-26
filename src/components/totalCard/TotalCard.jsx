@@ -103,7 +103,7 @@ export default function TotalCard(props) {
               <div>
                 <h1 className="text-lg font-bold">Total Expenses</h1>
                 <div className="mt-2">
-                  <span className="font-bold m-3 text-green-600">
+                  <span className="font-bold m-3 text-red-600">
                     {currencyFormatter.format(amount)}
                   </span>
                 </div>

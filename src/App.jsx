@@ -5,7 +5,7 @@ import { BrowserRouter as Main, Route, RouterProvider, Routes, createBrowserRout
 import NavBar from "./components/navBar/NavBar";
 import CategoryCard from "./components/categoryCard/CategoryCard";
 import SavingsCard from "./components/savingsCard/SavingsCard";
-import { Navbar } from "rsuite";
+// import { Navbar } from "rsuite";
 import Wallet from "./components/pages/wallet/Wallet";
 import Expenses from "./components/pages/expenses/Expenses";
 import Settings from "./components/pages/settings/Settings";
