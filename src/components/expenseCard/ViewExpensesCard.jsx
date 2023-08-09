@@ -32,28 +32,17 @@ const ViewExpensesCard = ({
   }
   return (
     <>
-      <section style={cardSize} className={`flex flex-wrap  mb-5 gap-4`}>
+      <section style={cardSize} className={`flex flex-wrap  mb-5 gap-4 rounded-lg`}>
         {/* {budgetCards.map((element,index)=>( */}
         <div
           style={size}
-          className={`flex justify-around ${classNames.join(" ")} rounded-lg`}
+          className={`flex justify-between ${classNames.join(" ")} rounded-lg`}
         >
           <div className="info flex justify-around m-1 my-2">
-            <div className="circle-bar flex justify-center items-center mt-2 m-1">
-              {max ? (
-                <CustomContentProgressBar
-                  icon={icon}
-                  color={color}
-                  progress={progress}
-                  available={available}
-                  trailColor={trailColor}
-                  style={style}
-                />
-              ) : (
+            <div className="circle-bar flex justify-center items-center mt-2 m-1"> 
                 <div style={imageSize} className="mb-3">
                   <img src={icon} alt="icon" />
                 </div>
-              )}
             </div>
             <div
               style={info}
@@ -62,7 +51,7 @@ const ViewExpensesCard = ({
               <div className="title mb-2 ">
                 <h3 className="text-lg font-bold text-justify">{title}</h3>
               </div>
-              {!available && (
+              {/* {!available && (
                 <div className="amount">
                   {color && (
                     <div>
@@ -79,11 +68,11 @@ const ViewExpensesCard = ({
                     </span>
                   )}
                 </div>
-              )}
+              )} */}
             </div>
           </div>
           <div
-            style={{ width: 140 }}
+            style={{ width: 127 }}
             className="flex justify-end  bg-inherit items-center"
           >
             <div

@@ -12,14 +12,17 @@ export default function TotalCard(props) {
   };
   const { budgets, expenses } = useBudgets();
   const amount = expenses.reduce((total, expense) => total + expense.amount, 0);
-  const max = budgets.reduce((total, budgets) => total + budgets.max, 0);
+  let max = budgets.reduce((total, budgets) => total + budgets.max, 0);
   // if(max===0)return null
+  // if(!max){
+  //   max=1;
+  // }
+  let progress = (amount * 100) / max;
   let warning, deficit;
   if(amount>max){
     warning='You are facing budget deficit of : ';
     deficit = `${(progress-100).toFixed(2)} %`;
   }
-  let progress = (amount * 100) / max;
   let title = (
     <div>
       <div className="flex justify-around items-center mb-3">

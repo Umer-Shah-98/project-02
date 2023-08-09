@@ -63,7 +63,7 @@ const CategoryCard = ({
               style={info}
               className="title-amount flex flex-col justify-center items-center"
             >
-              <div className="title mb-2 mt-2 mr-1">
+              <div className="title mb-2 mt-2">
                 <h3 className="text-xs font-bold ">{title}</h3>
               </div>
               {!available && (

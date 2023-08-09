@@ -1,9 +1,8 @@
-import React from "react";
-import { useState } from "react";
+import React from "react"; 
 import { useContext } from "react";
 import {v4 as uuid} from "uuid";
 import useLocalStorage from "../hooks/useLocalStorage";
-import HealthCareIcon from "../../assets/healthcare-icon.png";
+
 
 const BudgetContext = React.createContext();
 

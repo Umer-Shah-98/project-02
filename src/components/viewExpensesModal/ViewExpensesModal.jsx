@@ -26,7 +26,7 @@ const ViewExpensesModal = ({
         <button
           type="button"
           style={style}
-          className={`text-black text-center hover:bg-inherit font-bold rounded-md text-lg px-2 py-1`}
+          className={`text-black text-center hover:bg-inherit font-bold rounded-md text-sm px-2 py-1`}
           onClick={handleOpenViewExpenseModal}
         >
           {buttonName}

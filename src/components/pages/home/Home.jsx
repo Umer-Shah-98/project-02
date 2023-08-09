@@ -16,12 +16,9 @@ import { iconColors, otherColors } from "./data.js";
 import { otherIcons } from "./data.js";
 import UncategorizedBudgetCard from "../../uncategorizedCards/UncategorizedBudgetCard";
 import TotalCard from "../../totalCard/TotalCard";
-import ViewExpensesModal from "../../viewExpensesModal/ViewExpensesModal";
-import AddExpenseModal from "../../addExpenseModal/AddExpenseModal";
+
 import UncategorizedExpenseCard from "../../uncategorizedCards/UncategorizedExpenseCard";
-import { CustomContentProgressBar } from "../../progressBar/CustomContentProgressBar";
 const Home = () => {
-  let progressPercentage = 50;
   const { budgets, getBudgetExpenses } = useBudgets();
 
   const [showBudgetModal, setShowBudgetModal] = useState(false);
@@ -34,7 +31,7 @@ const Home = () => {
   function handleOpen(budgetId) {
     setShowModal(true);
     setShowAddExpenseModalBudgetId(budgetId);
-    console.log(" handle open called");
+    // console.log(" handle open called");
   }
   function handleClose() {
     setShowModal(false);
@@ -42,7 +39,7 @@ const Home = () => {
 
   function handleOpenBudgetModal() {
     setShowBudgetModal(true);
-    console.log("called");
+    // console.log("called");
   }
   function handleCloseBudgetModal() {
     setShowBudgetModal(false);
@@ -51,11 +48,11 @@ const Home = () => {
   function handleOpenViewExpenseModal(budgetId) {
     setShowViewExpensesModal(true);
     setShowViewExpensesModalBudgetId(budgetId);
-    console.log(" expense open called");
+    // console.log(" expense open called");
   }
   function handleCloseViewExpenseModal() {
     setShowViewExpensesModal(false);
-    console.log("close expense called");
+    // console.log("close expense called");
   }
 
   const randomProperty = (otherIcons) => {
@@ -271,9 +268,8 @@ const Home = () => {
             <SavingsCard amount={35000} max={50000} />
           </div>
         </div>
-        <div className="col-3 rounded-lg overflow-y-auto">
-          <div className="overflow-y-auto">
-          <div className='overflow-y-auto'>
+        <div className="col-3 rounded-lg ">
+          <div>
             {budgets.map((budget, index) => {
               let color, icon;
               const getIcon = (icons) => {
@@ -301,12 +297,12 @@ const Home = () => {
               };
               icon = getIcon(iconColors);
               return (
-                <div key={index} className="mx-2 my-2">
+                <div key={index} className="mx-2 my-2 rounded-lg">
                   <ViewExpensesCard
                     icon={icon}
                     title={budget.name}
                     style={{fontSize:16,}}
-                    size={{ background: "white", width: 325, }}
+                    size={{ background: "white", width: 335, }}
                     amount={"200"}
                     imageSize={{width:50,height:60}}
                     showViewExpensesModal={showViewExpensesModal}
@@ -317,45 +313,20 @@ const Home = () => {
                 </div>
               );
             })}
+            <div className="uncategorized-expenseCard">
             <UncategorizedExpenseCard
                 icon={UncategorizedIcon}
                 onViewExpenseClick={() => handleOpenViewExpenseModal(UNCATEGORIZED_BUDGET_ID)}
                 handleCloseViewExpenseModal={handleCloseViewExpenseModal}
                 budgetId={showViewExpensesModalBudgetId}
                 showViewExpensesModal={showViewExpensesModal}
-                size={{ background: "white", width: 320, }}
+                size={{ background: "white", width: 280, }}
                 imageSize={{width:50,height:50,marginLeft:10}}
               
                 
                 />
+                </div>
           </div>
-          </div>
-          {/*//logic for fetching color and icon corresponding to titles.
-              let color, icon;
-              const getIcon = (icons) => {
-                if (budget.name === "Food") {
-                  // color = iconColors.food.color;
-                  icon = icons.food.icon;
-                } else if (budget.name === "Health") {
-                  // color = iconColors.health.color;
-                  icon = icons.health.icon;
-                } else if (budget.name === "Education") {
-                  // color = iconColors.education.color;
-                  icon = icons.education.icon;
-                } else if (budget.name === "Utility Bills") {
-                  // color = iconColors.bills.color;
-                  icon = icons.bills.icon;
-                } else if (budget.name === "Transport") {
-                  // color = iconColors.transport.color;
-                  icon = icons.transport.icon;
-                } else {
-                  // color = iconColors.other.color;
-                  color = randomProperty(otherColors);
-                  icon = randomProperty(otherIcons);
-                }
-                return icon;
-              };
-            icon = getIcon(iconColors);*/}
         </div>
       </div>
       <div className="foot m-5">

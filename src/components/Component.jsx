@@ -23,9 +23,7 @@ const Component = () => {
   
   return (
     <div className="flex justify-end items-start">
-      {/* <div className='ml-5 m-2'><h1 className='font-bold text-lg'>Home</h1></div> */}
       <div className="flex items-start">
-        {/* <div className=''><TitleWithButton color={'red-500'} textColor={'red-500'} /></div> */}
         <div className="">
           <TitleWithButton
             style={{ backgroundColor: "#228B22", color: "white" }}
