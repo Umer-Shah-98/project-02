@@ -12,21 +12,26 @@ import {
   UNCATEGORIZED_BUDGET_ID,
   useBudgets,
 } from "../../budgetContext/BudgetContext";
-import { iconColors, otherColors } from "./data.js";
-import { otherIcons } from "./data.js";
+import { iconColors, otherColors,otherIcons } from "./data.js";
+// import { iconColors, otherColors,otherIcons } from "./savingsData.js";
 import UncategorizedBudgetCard from "../../uncategorizedCards/UncategorizedBudgetCard";
 import TotalCard from "../../totalCard/TotalCard";
 
 import UncategorizedExpenseCard from "../../uncategorizedCards/UncategorizedExpenseCard";
+import AddSavingCategory from "../../addSavingsModal/addSavingCategory";
 const Home = () => {
-  const { budgets, getBudgetExpenses } = useBudgets();
+  const { budgets, getBudgetExpenses,savings,getSavings } = useBudgets();
 
   const [showBudgetModal, setShowBudgetModal] = useState(false);
+  const [showSavingModal, setShowSavingModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showAddSavingModal, setShowAddSavingModal] = useState(false);
   const [showViewExpensesModal, setShowViewExpensesModal] = useState(false);
   const [showViewExpensesModalBudgetId, setShowViewExpensesModalBudgetId] =
     useState();
   const [showAddExpenseModalBudgetId, setShowAddExpenseModalBudgetId] =
+    useState();
+  const [showAddSavingModalSavingId, setShowAddSavingModalSavingId] =
     useState();
   function handleOpen(budgetId) {
     setShowModal(true);
@@ -36,7 +41,22 @@ const Home = () => {
   function handleClose() {
     setShowModal(false);
   }
+  function handleOpenAddSavingModal(savingId) {
+    setShowAddSavingModal(true);
+    setShowAddSavingModalSavingId(savingId);
+    console.log(" handle open called");
+  }
+  function handleCloseAddSavingModal() {
+    setShowAddSavingModal(false);
+  }
 
+  function handleOpenSavingModal() {
+    setShowSavingModal(true);
+    console.log(" saving called");
+  }
+  function handleCloseSavingModal() {
+    setShowSavingModal(false);
+  }
   function handleOpenBudgetModal() {
     setShowBudgetModal(true);
     // console.log("called");
@@ -125,7 +145,7 @@ const Home = () => {
             </div>
           </div>
           <div>
-            <TotalCard/>
+            <TotalCard />
           </div>
           <div className="budgeting-categories m-5">
             <TitleWithButton
@@ -258,15 +278,139 @@ const Home = () => {
             </div>
           </div>
           <div className="mt-10 mb-0 savings-categories m-5">
-            <TitleWithButton
+            <AddSavingCategory
               title="Your Savings Goals"
               color={"white"}
-              buttonName={"+"}
+              buttonName={"+ "}
+              handleOpenSavingModal={handleOpenSavingModal}
+              handleCloseSavingModal={handleCloseSavingModal}
+              showSavingModal={showSavingModal}
             />
           </div>
-          <div className="flex flex-wrap m-5">
-            <SavingsCard amount={35000} max={50000} />
+          <div className="flex flex-wrap m-5 relative overflow-hidden">
+            <div className="flex justify-between absolute top left w-full h-full">
+              <button
+                onClick={movePrev}
+                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                disabled={isDisabled("prev")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-20 -ml-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                <span className="sr-only">Prev</span>
+              </button>
+              <button
+                onClick={moveNext}
+                className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                disabled={isDisabled("next")}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-20 -ml-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+                <span className="sr-only">Next</span>
+              </button>
+            </div>
+            <div
+              ref={carousel}
+              className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 w-full"
+            >
+              {savings.map((saving, index) => {
+                const amount = getSavings(saving.id).reduce(
+                  (total, saving) => total + saving.amount,
+                  0
+                );
+                
+                const progress = (amount * 100) / saving.max;
+                const randomProperty = (otherIcons) => {
+                  const keys = Object.keys(otherIcons);
+                  if (keys.length > 0) {
+                    const index = Math.floor(keys.length * Math.random());
+                    const key = keys[index];
+                    const value = otherIcons[key];
+                    return value;
+                  }
+                  return null;
+                };
+                //logic for fetching color and icon corresponding to titles.
+                let color, icon;
+                if (saving.name === "Umrah") {
+                  color = iconColors.umrah.color;
+                  icon = iconColors.umrah.icon;
+                } else if (saving.name === "Cofee Machine") {
+                  color = iconColors.cofeeMac.color;
+                  icon = iconColors.cofeeMac.icon;
+                } else if (saving.name === "Car") {
+                  color = iconColors.car.color;
+                  icon = iconColors.car.icon;
+                } else if (saving.name === "Utility Bills") {
+                  color = iconColors.bills.color;
+                  icon = iconColors.bills.icon;
+                } else if (saving.name === "Transport") {
+                  color = iconColors.transport.color;
+                  icon = iconColors.transport.icon;
+                } else {
+                  // color = iconColors.other.color;
+                  color = randomProperty(otherColors);
+                  icon = randomProperty(otherIcons);
+                }
+                return (
+                  <div key={index} className="flex flex-wrap ">
+                    <SavingsCard
+                      info={{ marginLeft: 20 }}
+                      trailColor={"#D3D3D3"}
+                      style={{ width: 70, height: 70 }}
+                      imageSize={{ width: 70, height: 70 }}
+                      amount={amount}
+                      max={saving.max}
+                      key={saving.id}
+                      title={saving.name}
+                      progress={progress.toFixed(1)}
+                      color={color}
+                      icon={icon}
+                      onAddSavingClick={() => handleOpenAddSavingModal(saving.id)}
+                      handleCloseAddSavingModal={handleCloseAddSavingModal}
+                      defaultSavingId={showAddSavingModalSavingId}
+                      showAddSavingModal={showAddSavingModal}
+                      size={{ width: 220, height: 110 }}
+                    />
+                  </div>
+                );
+              })}
+              {/* <UncategorizedBudgetCard
+                size={{ marginRight: 25 }}
+                icon={UncategorizedIcon}
+                onAddExpenseClick={() => handleOpen(UNCATEGORIZED_BUDGET_ID)}
+                handleClose={handleClose}
+                defaultBudgetId={showAddExpenseModalBudgetId}
+                showModal={showModal}
+               /> */}
+            </div>
           </div>
+          {/* <div className="flex flex-wrap m-5">
+            <SavingsCard amount={35000} max={50000} />
+          </div> */}
         </div>
         <div className="col-3 rounded-lg ">
           <div>
@@ -301,31 +445,33 @@ const Home = () => {
                   <ViewExpensesCard
                     icon={icon}
                     title={budget.name}
-                    style={{fontSize:16,}}
-                    size={{ background: "white", width: 335, }}
+                    style={{ fontSize: 16 }}
+                    size={{ background: "white", width: 335 }}
                     amount={"200"}
-                    imageSize={{width:50,height:60}}
+                    imageSize={{ width: 50, height: 60 }}
                     showViewExpensesModal={showViewExpensesModal}
                     budgetId={showViewExpensesModalBudgetId}
-                    onViewExpenseClick={() => handleOpenViewExpenseModal(budget.id)}
+                    onViewExpenseClick={() =>
+                      handleOpenViewExpenseModal(budget.id)
+                    }
                     handleCloseViewExpenseModal={handleCloseViewExpenseModal}
                   />
                 </div>
               );
             })}
             <div className="uncategorized-expenseCard">
-            <UncategorizedExpenseCard
+              <UncategorizedExpenseCard
                 icon={UncategorizedIcon}
-                onViewExpenseClick={() => handleOpenViewExpenseModal(UNCATEGORIZED_BUDGET_ID)}
+                onViewExpenseClick={() =>
+                  handleOpenViewExpenseModal(UNCATEGORIZED_BUDGET_ID)
+                }
                 handleCloseViewExpenseModal={handleCloseViewExpenseModal}
                 budgetId={showViewExpensesModalBudgetId}
                 showViewExpensesModal={showViewExpensesModal}
-                size={{ background: "white", width: 280, }}
-                imageSize={{width:50,height:50,marginLeft:10}}
-              
-                
-                />
-                </div>
+                size={{ background: "white", width: 280 }}
+                imageSize={{ width: 50, height: 50, marginLeft: 10 }}
+              />
+            </div>
           </div>
         </div>
       </div>

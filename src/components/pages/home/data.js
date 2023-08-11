@@ -7,10 +7,26 @@ import TransportIcon from "../../../assets/transport-icon.png";
 import Icon1 from "../../../assets/icon-1.png";
 import Icon2 from "../../../assets/icon-2.png";
 import Icon3 from "../../../assets/icon-3.png";
+import TravelIcon from '../../../assets/travel-icon.png'
+import CarIcon from '../../../assets/car-icon.png'
+import CoffeeMacIcon from '../../../assets/coffee-icon.png'
+
 export const iconColors = {
   health:{
     color: "blue",
     icon: `${HealthCareIcon}`,
+  },
+  umrah:{
+    color: "blue",
+    icon: `${TravelIcon}`,
+  },
+  car:{
+    color: "blue",
+    icon: `${CarIcon}`,
+  },
+  coffeMac:{
+    color: "blue",
+    icon: `${CoffeeMacIcon}`,
   },
   education:{
     color: "green",

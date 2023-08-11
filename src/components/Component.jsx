@@ -20,7 +20,7 @@ const Component = () => {
     setShowBudgetModal(true);
     console.log("called");
   }
-  
+
   return (
     <div className="flex justify-end items-start">
       <div className="flex items-start">

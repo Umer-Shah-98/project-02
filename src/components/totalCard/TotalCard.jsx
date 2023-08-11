@@ -19,9 +19,9 @@ export default function TotalCard(props) {
   // }
   let progress = (amount * 100) / max;
   let warning, deficit;
-  if(amount>max){
-    warning='You are facing budget deficit of : ';
-    deficit = `${(progress-100).toFixed(2)} %`;
+  if (amount > max) {
+    warning = "You are facing budget deficit of : ";
+    deficit = `${(progress - 100).toFixed(2)} %`;
   }
   let title = (
     <div>
@@ -48,7 +48,9 @@ export default function TotalCard(props) {
         </div>
       </div>
       <div className="mt-8 text-xl">
-        <h1>{warning}  {deficit}</h1>
+        <h1>
+          {warning} {deficit}
+        </h1>
       </div>
     </div>
   );
