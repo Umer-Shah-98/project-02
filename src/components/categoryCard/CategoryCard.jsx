@@ -2,7 +2,7 @@ import React from "react";
 import { CustomContentProgressBar } from "../progressBar/CustomContentProgressBar";
 import { currencyFormatter } from "../../utils";
 import AddExpenseModal from "../addExpenseModal/AddExpenseModal";
-import './categoryCard.css'
+import "./categoryCard.css";
 const CategoryCard = ({
   info,
   available,
@@ -84,15 +84,17 @@ const CategoryCard = ({
               )}
             </div>
           </div>
-          <div className="dots flex items-start ml-1">
-            <AddExpenseModal
-              buttonName={"+"}
-              handleOpen={onAddExpenseClick}
-              showModal={showModal}
-              handleClose={handleClose}
-              defaultBudgetId={defaultBudgetId}
-            />{" "}
-          </div>
+          {!available && (
+            <div className="dots flex items-start ml-1">
+              <AddExpenseModal
+                buttonName={"+"}
+                handleOpen={onAddExpenseClick}
+                showModal={showModal}
+                handleClose={handleClose}
+                defaultBudgetId={defaultBudgetId}
+              />{" "}
+            </div>
+          )}
         </div>
       </section>
     </>

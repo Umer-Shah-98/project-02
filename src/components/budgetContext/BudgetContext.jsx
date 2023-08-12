@@ -27,12 +27,25 @@ export const BudgetsProvider = ({ children }) => {
   const [budgets, setBudgets] = useLocalStorage("budgets", []);
   const [expenses, setExpenses] = useLocalStorage("expenses", []);
   const [savings, setSavings] = useLocalStorage("savings", []);
+  const [savingProgress, setSavingProgress] = useLocalStorage(
+    "savingProgress",
+    []
+  );
   function getBudgetExpenses(budgetId) {
     return expenses.filter((expense) => expense.budgetId === budgetId);
   }
-  function getSavings(savingId) {
-    return savings.filter((saving) => saving.savingId === savingId);
+  function getSavingsHistory(savingId) {
+    return savingProgress.filter((saving) => saving.savingId === savingId);
   }
+  function addBudget({ name, max }) {
+    setBudgets((previousBudgets) => {
+      if (previousBudgets.find((budget) => budget.name === name)) {
+        return previousBudgets;
+      }
+      return [...previousBudgets, { id: uuid(), name, max }];
+    });
+  }
+
   function addExpense({ amount, description, budgetId }) {
     setExpenses((previousExpenses) => {
       return [
@@ -41,12 +54,22 @@ export const BudgetsProvider = ({ children }) => {
       ];
     });
   }
-  function addBudget({ name, max }) {
-    setBudgets((previousBudgets) => {
-      if (previousBudgets.find((budget) => budget.name === name)) {
-        return previousBudgets;
+
+  function addSavings({ name, max }) {
+    setSavings((previousSavings) => {
+      if (previousSavings.find((saving) => saving.name === name)) {
+        return previousSavings;
       }
-      return [...previousBudgets, { id: uuid(), name, max }];
+      return [...previousSavings, { id: uuid(), name, max }];
+    });
+  }
+
+  function addSavingProgress({ amount, description, savingId }) {
+    setSavingProgress((previousSavingProgress) => {
+      return [
+        ...previousSavingProgress,
+        { id: uuid(), amount, description, savingId },
+      ];
     });
   }
 
@@ -66,54 +89,47 @@ export const BudgetsProvider = ({ children }) => {
       return previousExpenses.filter((budget) => budget.id !== id);
     });
   }
-
-  function addSavingCategory({ name, max }) {
-    setSavings((previousSavings) => {
-      if (previousSavings.find((saving) => saving.name === name)) {
-        return previousSavings;
-      }
-      return [...previousSavings, { id: uuid(), name, max }];
-    });
-  }
-
-  function addSaving({ amount, description, savingId }) {
-    setSavings((previousSavings) => {
-      
-      if(previousSavings.find((saving)=>saving.id===savingId)){
-        return previousSavings;
-      }
-      return [
-        ...previousSavings,
-        { id: uuid(), amount, description, savingId },
-      ];
-    });
-  }
-  function deleteSaving({ id }) {
-    setBudgets((previousBudgets) => {
-      return previousBudgets.map((budget) => {
-        // return budget;
-        return { ...budget, budgetId: UNCATEGORIZED_BUDGET_ID };
-      });
-    });
+  function deleteSavings({ id }) {
+    // setBudgets((previousBudgets) => {
+    //   return previousBudgets.map((budget) => {
+    //     // return budget;
+    //     return { ...budget, budgetId: UNCATEGORIZED_BUDGET_ID };
+    //   });
+    // });
     setSavings(([previousSavings]) => {
       return [previousSavings].filter((saving) => saving.id !== id);
     });
   }
+
+  // function addSaving({ amount, description, savingId }) {
+  //   setSavings((previousSavings) => {
+
+  //     if(previousSavings.find((saving)=>saving.id===savingId)){
+  //       return previousSavings;
+  //     }
+  //     return [
+  //       ...previousSavings,
+  //       { id: uuid(), amount, description, savingId },
+  //     ];
+  //   });
+  // }
+
   return (
     <BudgetContext.Provider
       value={{
         budgets,
         expenses,
         savings,
+        savingProgress,
         getBudgetExpenses,
-        addExpense,
         addBudget,
+        addExpense,
         deleteBudget,
         deleteExpense,
-        addSavingCategory,
-        addSaving,
-        getSavings,
-        deleteSaving,
+        addSavings,
+        addSavingProgress,
+        getSavingsHistory,
+        deleteSavings,
       }}
     >
       {children}

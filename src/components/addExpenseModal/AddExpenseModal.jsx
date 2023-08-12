@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import './style.css'
 import {
   UNCATEGORIZED_BUDGET_ID,
   useBudgets,
@@ -42,7 +43,7 @@ const AddExpenseModal = ({
       </div>
       {showModal ? (
         <>
-          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
+          <div className="flex expense-modal justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none ">
             <div
               className="relative w-auto my-6 mx-auto max-w-3xl"
               style={{ width: "500px" }}

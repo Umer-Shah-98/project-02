@@ -20,7 +20,7 @@ import TotalCard from "../../totalCard/TotalCard";
 import UncategorizedExpenseCard from "../../uncategorizedCards/UncategorizedExpenseCard";
 import AddSavingCategory from "../../addSavingsModal/addSavingCategory";
 const Home = () => {
-  const { budgets, getBudgetExpenses,savings,getSavings } = useBudgets();
+  const { budgets, getBudgetExpenses,savings,getSavingsHistory } = useBudgets();
 
   const [showBudgetModal, setShowBudgetModal] = useState(false);
   const [showSavingModal, setShowSavingModal] = useState(false);
@@ -337,8 +337,8 @@ const Home = () => {
               className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 w-full"
             >
               {savings.map((saving, index) => {
-                const amount = getSavings(saving.id).reduce(
-                  (total, saving) => total + saving.amount,
+                const amount = getSavingsHistory(saving.id).reduce(
+                  (total, savingProgress) => total + savingProgress.amount,
                   0
                 );
                 

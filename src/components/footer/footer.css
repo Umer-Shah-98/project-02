@@ -1,0 +1,9 @@
+.footer{
+    background: rgb(31,160,255);
+background: linear-gradient(90deg, rgba(31,160,255,1) 0%, rgba(18,218,251,1) 35%, rgba(167,253,204,1) 100%);
+}
+
+.copyright{
+    background: rgb(211,245,207);
+background: linear-gradient(90deg, rgba(211,245,207,1) 0%, rgba(168,219,250,1) 35%, rgba(99,94,226,1) 100%);
+}

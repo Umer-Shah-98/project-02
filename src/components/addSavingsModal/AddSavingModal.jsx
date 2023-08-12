@@ -15,11 +15,11 @@ const AddSavingModal = ({
   const descriptionRef = useRef();
   const amountRef = useRef();
   const savingIdRef = useRef();
-  const { addSaving, savings } = useBudgets();
+  const { addSavingProgress, savings } = useBudgets();
   function handleSubmit(e) {
     console.log("called");
     e.preventDefault();
-    addSaving({
+    addSavingProgress({
       description:
         descriptionRef.current.value.slice(0, 1).toUpperCase() +
         descriptionRef.current.value.slice(1).toLowerCase(),

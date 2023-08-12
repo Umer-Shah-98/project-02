@@ -21,7 +21,7 @@ const SavingsCard = ({
   showAddSavingModal,
   handleCloseAddSavingModal,
 }) => {
-  const { savings, savingId, deleteSaving } = useBudgets();
+  const { savings, savingId, deleteSavings } = useBudgets();
   const classNames = [];
   let textColor;
   let warning;
@@ -100,12 +100,12 @@ const SavingsCard = ({
                 className="text-white bg-red-600 active:bg-yellow-700 font-bold uppercase text-sm px-3 py-2 rounded  shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                 type="button"
                 onClick={() => {
-                  deleteSaving(saving);
+                  deleteSavings(saving);
                   handleCloseAddSavingModal();
                 }}
               >
                 Del
-              </button>{" "}
+              </button>
             </div> */}
           </div>
         </div>

@@ -8,7 +8,9 @@ font-family: 'Poppins', sans-serif;
 font-family: 'Roboto', sans-serif;
 }
 body{
-  background-color:#e5e5e5;
+ //background-color:#e5e5e5;
+  background: rgb(211,245,207);
+background: linear-gradient(90deg, rgba(211,245,207,1) 0%, rgba(168,219,250,1) 35%, rgba(99,94,226,1) 100%);
 }
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

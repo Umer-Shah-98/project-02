@@ -10,11 +10,11 @@ const AddSavingCategory = ({
 }) => {
   const nameRef = useRef();
   const maxRef = useRef();
-  const { addSavingCategory} = useBudgets();
+  const { addSavings} = useBudgets();
   function handleSubmit(e) {
     console.log("called");
     e.preventDefault();
-    addSavingCategory({
+    addSavings({
       name:
         nameRef.current.value.slice(0, 1).toUpperCase() +
         nameRef.current.value.slice(1).toLowerCase(),
